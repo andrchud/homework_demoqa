@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
 
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
             genderInput = $("#genterWrapper"),
@@ -23,12 +23,11 @@ public class RegistrationPage {
             addressInput = $("#currentAddress"),
             stateSelector = $("#state"),
             citySelector = $("#city"),
-            selecorInput = $("#stateCity-wrapper"),
-            submitButton = $("#submit"),
-            resultsTable = $(".table-responsive");
+            selectorInput = $("#stateCity-wrapper"),
+            submitButton = $("#submit");
+
 
     CalendarComponent calendarComponent = new CalendarComponent();
-    TableComponent tableComponent = new TableComponent();
 
     public RegistrationPage openPage(){
         open("/automation-practice-form");
@@ -79,13 +78,13 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage selectSubjectsByInput(String subject) {
+    public RegistrationPage setSubjectByInput(String subject) {
         subjectsInput.setValue(subject).pressEnter();
 
         return this;
     }
 
-    public RegistrationPage selectHobbyByCheckBox(String hobby) {
+    public RegistrationPage setHobbyByCheckBox(String hobby) {
         hobbyCheckbox.$(byText(hobby)).click();
 
         return this;
@@ -95,21 +94,21 @@ public class RegistrationPage {
 
         return this;
     }
-    public RegistrationPage currentAddress(String address) {
+    public RegistrationPage setCurrentAddress(String address) {
         addressInput.setValue(address);
 
         return this;
     }
-    public RegistrationPage selectState(String state){
+    public RegistrationPage setState(String state){
         stateSelector.click();
-        selecorInput.$(byText(state)).click();
+        selectorInput.$(byText(state)).click();
 
         return this;
     }
 
-    public RegistrationPage selectCity(String city){
+    public RegistrationPage setCity(String city){
         citySelector.click();
-        selecorInput.$(byText(city)).click();
+        selectorInput.$(byText(city)).click();
 
         return this;
     }
@@ -119,19 +118,6 @@ public class RegistrationPage {
 
         return this;
     }
-    public RegistrationPage checkResultTable(String key, String value){
-        tableComponent.checkTable(key,value);
-        return this;
-    }
 
-    public RegistrationPage unsuccessfulSubmit() {
-        resultsTable.shouldNotBe(visible);
-
-        return this;
-    }
-    public RegistrationPage invalidPhone(){
-        phoneInput.shouldHave(cssValue("border-bottom-color", "rgba(220, 53, 69, 1)"));
-        return this;
-    }
 
 }

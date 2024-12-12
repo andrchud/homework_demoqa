@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import pages.verification.RegistrationPageVerification;
 
 public class RegistrationFormPageObjectTests extends TestBase {
 
@@ -23,6 +24,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
 
 
     RegistrationPage registrationPage = new RegistrationPage();
+    RegistrationPageVerification registrationVerification = new RegistrationPageVerification();
 
     @Test
     void fillFormTest(){
@@ -48,16 +50,16 @@ public class RegistrationFormPageObjectTests extends TestBase {
                 setGender(gender).
                 setPhone(phoneNumber).
                 setDateOfBirth(dayOfBirth,monthOfBirth,yearOfBirth).
-                selectSubjectsByInput(subjectFirst).
-                selectSubjectsByInput(subjectSecond).
-                selectHobbyByCheckBox(hobbies).
+                setSubjectByInput(subjectFirst).
+                setSubjectByInput(subjectSecond).
+                setHobbyByCheckBox(hobbies).
                 uploadFile(pathToFile).
-                currentAddress(currentAddress).
-                selectState(state).
-                selectCity(city).
+                setCurrentAddress(currentAddress).
+                setState(state).
+                setCity(city).
                 submit();
         for (String[] pair : expectedValues) {
-            registrationPage.checkResultTable(pair[0],pair[1]);
+            registrationVerification.checkResultTable(pair[0],pair[1]);
         }
     }
 
@@ -86,7 +88,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
                 setDateOfBirth(dayOfBirth,monthOfBirth,yearOfBirth).
                 submit();
         for (String[] pair : expectedValues) {
-            registrationPage.checkResultTable(pair[0],pair[1]);
+            registrationVerification.checkResultTable(pair[0],pair[1]);
         }
     }
 
@@ -98,8 +100,9 @@ public class RegistrationFormPageObjectTests extends TestBase {
                 setLastName(lastName).
                 setGender(gender).
                 setDateOfBirth(dayOfBirth,monthOfBirth,yearOfBirth).
-                submit().
-                unsuccessfulSubmit().
-                invalidPhone();
+                submit();
+
+        registrationVerification.checkResultTableInvisibility().
+                checkPhoneRequired();
     }
 }
