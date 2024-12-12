@@ -1,16 +1,21 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.verification.RegistrationPageVerification;
 
+import java.util.Locale;
+
 public class RegistrationFormPageObjectTests extends TestBase {
 
-    String firstName = "Andrey";
-    String lastName = "Chudov";
+    Faker faker = new Faker(new Locale("en"));
+
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
     String gender = "Other";
-    String email = "andr.chud@yandex.ru";
-    String phoneNumber = "9854441122";
+    String email = faker.internet().emailAddress();
+    String phoneNumber = faker.phoneNumber().phoneNumber();
     String dayOfBirth = "17";
     String monthOfBirth = "January";
     String yearOfBirth = "1998";
@@ -18,7 +23,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
     String subjectSecond = "English";
     String hobbies = "Reading";
     String pathToFile = "orshnik.png";
-    String currentAddress = "Indian, Ragesh Kutropale str. 13";
+    String currentAddress = faker.address().streetAddress();
     String state = "Haryana";
     String city = "Karnal";
 
