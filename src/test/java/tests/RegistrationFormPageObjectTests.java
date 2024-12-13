@@ -1,31 +1,29 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.verification.RegistrationPageVerification;
 
-import java.util.Locale;
+
+import static utils.RandomUtils.*;
 
 public class RegistrationFormPageObjectTests extends TestBase {
 
-    Faker faker = new Faker(new Locale("en"));
-
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String gender = "Other";
-    String email = faker.internet().emailAddress();
-    String phoneNumber = faker.phoneNumber().phoneNumber();
-    String dayOfBirth = "17";
-    String monthOfBirth = "January";
-    String yearOfBirth = "1998";
-    String subjectFirst = "Physics";
-    String subjectSecond = "English";
-    String hobbies = "Reading";
-    String pathToFile = "orshnik.png";
-    String currentAddress = faker.address().streetAddress();
-    String state = "Haryana";
-    String city = "Karnal";
+    String firstName = getFirstName();
+    String lastName = getLastName();
+    String gender = getGender();
+    String email = getUserEmail();
+    String phoneNumber = getUserPhone();
+    String dayOfBirth = getDayOfBirth();
+    String monthOfBirth = getMonthOfBirth();
+    String yearOfBirth = getYearOfBirth();
+    String subjectFirst = getSubject();
+    String subjectSecond = getSubject();
+    String hobbies = getHobby();
+    String pathToFile = getPicture();
+    String currentAddress = getStreetAddress();
+    String state = getState();
+    String city = getCity();
 
 
     RegistrationPage registrationPage = new RegistrationPage();
@@ -35,16 +33,16 @@ public class RegistrationFormPageObjectTests extends TestBase {
     void fillFormTest(){
 
         String[][] expectedValues = {
-                {"Student Name", firstName + " " + lastName},
+                {"Student Name", String.format("%s %s",firstName,lastName)},
                 {"Student Email", email},
                 {"Gender", gender},
                 {"Mobile", phoneNumber},
-                {"Date of Birth", dayOfBirth + " " + monthOfBirth +","+yearOfBirth},
-                {"Subjects", subjectFirst + ", " + subjectSecond},
+                {"Date of Birth", String.format("%s %s,%s",dayOfBirth,monthOfBirth,yearOfBirth)},
+                {"Subjects", String.format("%s, %s",subjectFirst,subjectSecond)},
                 {"Hobbies", hobbies},
                 {"Picture", pathToFile},
                 {"Address", currentAddress},
-                {"State and City", state + " " + city}
+                {"State and City", String.format("%s %s",state,city)}
         };
 
         registrationPage.openPage().
@@ -72,11 +70,11 @@ public class RegistrationFormPageObjectTests extends TestBase {
     void minimumFillFormTest(){
 
         String[][] expectedValues = {
-                {"Student Name", firstName + " " + lastName},
+                {"Student Name", String.format("%s %s",firstName,lastName)},
                 {"Student Email", " "},
                 {"Gender", gender},
                 {"Mobile", phoneNumber},
-                {"Date of Birth", dayOfBirth + " " + monthOfBirth +","+yearOfBirth},
+                {"Date of Birth", String.format("%s %s,%s",dayOfBirth,monthOfBirth,yearOfBirth)},
                 {"Subjects", " "},
                 {"Hobbies", " "},
                 {"Picture", " "},
