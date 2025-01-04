@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Description;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.verification.RegistrationPageVerification;
@@ -7,6 +9,7 @@ import pages.verification.RegistrationPageVerification;
 
 import static utils.RandomUtils.*;
 
+@Tag("demoqa")
 public class RegistrationFormPageObjectTests extends TestBase {
 
     String firstName = getFirstName();
@@ -30,6 +33,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
     RegistrationPageVerification registrationVerification = new RegistrationPageVerification();
 
     @Test
+    @Description("Полностью заполненная форма для успешной регистрации")
     void fillFormTest(){
 
         String[][] expectedValues = {
@@ -67,6 +71,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
     }
 
     @Test
+    @Description("Минимально заполненная форма для успешной регистрации")
     void minimumFillFormTest(){
 
         String[][] expectedValues = {
@@ -96,6 +101,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
     }
 
     @Test
+    @Description("Неуспешно заполненная форма регистрации — неправельный телефонный номер")
     void negativeFillFormTest(){
         registrationPage.openPage().
                 deleteBanners().
