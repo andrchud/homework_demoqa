@@ -38,7 +38,6 @@ public class RegistrationPage {
     public RegistrationPage deleteBanners(){
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
-
         return this;
     }
 
