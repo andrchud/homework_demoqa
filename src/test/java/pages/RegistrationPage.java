@@ -114,7 +114,7 @@ public class RegistrationPage {
 
     @Step("Выбрать штат")
     public RegistrationPage setState(String state){
-        stateSelector.click();
+        stateSelector.scrollTo().click();
         selectorInput.$(byText(state)).click();
 
         return this;
@@ -122,7 +122,7 @@ public class RegistrationPage {
 
     @Step("Выбрать город")
     public RegistrationPage setCity(String city){
-        citySelector.click();
+        citySelector.scrollTo().click();
         selectorInput.$(byText(city)).click();
 
         return this;
@@ -130,7 +130,7 @@ public class RegistrationPage {
 
     @Step("Подтвердить данные заполненной формы")
     public RegistrationPage submit() {
-        submitButton.click();
+        submitButton.scrollTo().click();
 
         return this;
     }

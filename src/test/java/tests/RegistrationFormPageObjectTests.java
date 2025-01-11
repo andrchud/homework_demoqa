@@ -62,6 +62,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
                 setHobbyByCheckBox(hobbies).
                 uploadFile(pathToFile).
                 setCurrentAddress(currentAddress).
+                deleteBanners().
                 setState(state).
                 setCity(city).
                 submit();
@@ -94,6 +95,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
                 setGender(gender).
                 setPhone(phoneNumber).
                 setDateOfBirth(dayOfBirth,monthOfBirth,yearOfBirth).
+                deleteBanners().
                 submit();
         for (String[] pair : expectedValues) {
             registrationVerification.checkResultTable(pair[0],pair[1]);
@@ -109,6 +111,7 @@ public class RegistrationFormPageObjectTests extends TestBase {
                 setLastName(lastName).
                 setGender(gender).
                 setDateOfBirth(dayOfBirth,monthOfBirth,yearOfBirth).
+                deleteBanners().
                 submit();
 
         registrationVerification.checkResultTableInvisibility().
